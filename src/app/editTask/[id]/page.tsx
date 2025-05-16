@@ -8,7 +8,6 @@ export default function EditTask() {
   const id = Number(params.id);
   const [title, setTitle] = useState("");
   const [completed, setCompleted] = useState(false);
-
   const [error, setError] = useState("");
   const router = useRouter();
   const [notFound, setNotFound] = useState(false);
@@ -22,7 +21,6 @@ export default function EditTask() {
     }
     setTitle(todo.title);
     setCompleted(todo.completed);
-
   }, [id]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -42,18 +40,18 @@ export default function EditTask() {
 
   if (notFound) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center p-6 max-w-md">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
-            <svg className="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-blue-100">
+        <div className="text-center p-8 max-w-md bg-white rounded-2xl shadow-xl border border-white/20 backdrop-blur-sm">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-red-100 to-pink-100 mb-6 shadow-inner">
+            <svg className="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-gray-800 mb-2">Tâche introuvable</h2>
-          <p className="text-gray-600 mb-6">La tâche que vous essayez de modifier n&#39;existe pas ou a été supprimée.</p>
+          <h2 className="text-2xl font-bold text-gray-800 mb-3">Tâche introuvable</h2>
+          <p className="text-gray-600 mb-8">La tâche que vous essayez de modifier n&#39;existe pas ou a été supprimée.</p>
           <button
             onClick={() => router.push("/task")}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl hover:shadow-lg transition-all duration-300"
           >
             Retour à la liste
           </button>
@@ -63,21 +61,23 @@ export default function EditTask() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-lg">
-        <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
-          {/* En-tête avec bordure colorée */}
-          <div className="border-t-4 border-blue-600 p-6">
-            <div className="text-center mb-6">
-              <h1 className="text-2xl font-bold text-gray-800">Modifier la tâche</h1>
-              <p className="text-gray-600 mt-1">Mettez à jour les détails de votre tâche</p>
+    <main className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-white/20 backdrop-blur-sm">
+          {/* En-tête avec dégradé */}
+          <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-6 text-white">
+            <div className="text-center mb-2">
+              <h1 className="text-2xl font-bold">Modifier la tâche</h1>
+              <p className="text-blue-100 mt-1">Mettez à jour les détails de votre tâche</p>
             </div>
+          </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="p-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               {/* Champ Titre */}
               <div>
-                <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-                  Titre de la tâche *
+                <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+                  Titre de la tâche <span className="text-red-500">*</span>
                 </label>
                 <input
                   id="title"
@@ -88,39 +88,49 @@ export default function EditTask() {
                     setError("");
                   }}
                   placeholder="Ex: Finaliser le rapport trimestriel"
-                  className="w-full text-black px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-transparent transition-all shadow-sm"
                   autoFocus
                 />
               </div>
 
               {/* Champ Statut */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Statut</label>
-                <div className="flex items-center space-x-4">
-                  <label className="inline-flex items-center">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Statut</label>
+                <div className="grid grid-cols-2 gap-3">
+                  <label className={`flex items-center justify-center p-3 rounded-xl border-2 cursor-pointer transition-all ${!completed ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}>
                     <input
                       type="radio"
                       checked={!completed}
                       onChange={() => setCompleted(false)}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                      className="hidden"
                     />
-                    <span className="ml-2 text-gray-700">in progress</span>
+                    <div className="flex items-center">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-2 ${!completed ? 'border-blue-500 bg-blue-500' : 'border-gray-400'}`}>
+                        {!completed && <div className="w-2 h-2 rounded-full bg-white"></div>}
+                      </div>
+                      <span className={`font-medium ${!completed ? 'text-blue-600' : 'text-gray-600'}`}>En cours</span>
+                    </div>
                   </label>
-                  <label className="inline-flex items-center">
+                  <label className={`flex items-center justify-center p-3 rounded-xl border-2 cursor-pointer transition-all ${completed ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-gray-300'}`}>
                     <input
                       type="radio"
                       checked={completed}
                       onChange={() => setCompleted(true)}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                      className="hidden"
                     />
-                    <span className="ml-2 text-gray-700">completed</span>
+                    <div className="flex items-center">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-2 ${completed ? 'border-green-500 bg-green-500' : 'border-gray-400'}`}>
+                        {completed && <div className="w-2 h-2 rounded-full bg-white"></div>}
+                      </div>
+                      <span className={`font-medium ${completed ? 'text-green-600' : 'text-gray-600'}`}>Terminée</span>
+                    </div>
                   </label>
                 </div>
               </div>
 
               {/* Message d'erreur */}
               {error && (
-                <div className="p-3 bg-red-50 text-red-700 text-sm rounded-lg border border-red-100 flex items-start">
+                <div className="p-3 bg-red-50 text-red-700 text-sm rounded-xl border border-red-100 flex items-start">
                   <svg className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -129,19 +139,19 @@ export default function EditTask() {
               )}
 
               {/* Boutons */}
-              <div className="flex justify-between pt-4">
+              <div className="flex justify-between pt-2">
                 <button
                   type="button"
                   onClick={() => router.push("/task")}
-                  className="px-4 py-2 text-gray-700 font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors"
+                  className="px-5 py-2.5 text-gray-700 font-medium rounded-xl border border-gray-300 hover:bg-gray-50 transition-colors hover:shadow-sm"
                 >
                   Annuler
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium rounded-xl shadow-sm transition-all hover:shadow-md"
                 >
-                  Enregistrer les modifications
+                  Enregistrer
                 </button>
               </div>
             </form>

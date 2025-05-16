@@ -13,19 +13,28 @@ export default function TasksTable({
   onDelete,
 }: TasksTableProps) {
   return (
-    <div className="overflow-x-auto rounded-lg shadow-md">
-      <table className="min-w-full bg-blue-300 text-gray-800 rounded-lg">
-        <thead>
-          <tr className="bg-blue-600 text-gray-800">
-            <th className="py-3 px-4 text-left">Titre</th>
-            <th className="py-3 px-4 text-left">Statut</th>
-            <th className="py-3 px-4 text-center">Actions</th>
+    <div className="border rounded-lg overflow-hidden shadow-sm">
+      <table className="min-w-full divide-y divide-gray-200">
+        <thead className="bg-gray-50">
+          <tr>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Titre
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Statut
+            </th>
+            <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Actions
+            </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="bg-white divide-y divide-gray-200">
           {todos.length === 0 ? (
             <tr>
-              <td colSpan={3} className="text-center text-gray-400 py-6">
+              <td
+                colSpan={3}
+                className="px-6 py-4 text-center text-gray-500 italic"
+              >
                 Aucune tâche pour le moment.
               </td>
             </tr>
@@ -33,41 +42,49 @@ export default function TasksTable({
             todos.map((todo) => (
               <tr
                 key={todo.id}
-                className="border-b-4 border-gray-800 hover:bg-black-800 transition-colors"
+                className="hover:bg-gray-50 transition-colors duration-150"
               >
-                <td className="py-3 px-4 font-medium text-gray-800">
-                  <span
-                    className={
-                      todo.completed ? "line-through text-gray-800" : ""
-                    }
-                  >
-                    {todo.title}
-                  </span>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="flex items-center">
+                    <span
+                      className={`text-sm font-medium ${
+                        todo.completed
+                          ? "line-through text-gray-400"
+                          : "text-gray-900"
+                      }`}
+                    >
+                      {todo.title}
+                    </span>
+                  </div>
                 </td>
-                <td className="py-3 px-4">
+                <td className="px-6 py-4 whitespace-nowrap">
                   <span
-                    className={`px-2 py-1 rounded text-xs font-semibold ${
-                      todo.completed ? "bg-indigo-700" : "bg-amber-900"
+                    className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
+                      todo.completed
+                        ? "bg-green-100 text-green-800"
+                        : "bg-yellow-100 text-yellow-800"
                     }`}
                   >
                     {todo.completed ? "Terminée" : "En cours"}
                   </span>
                 </td>
-                <td className="py-3 px-4 flex items-center justify-center gap-3">
-                  <Button
-                    variant="default"
-                    onClick={() => onEdit(todo.id)}
-                    className="text-xs text-gray-800 hover:text-blue-700 bg-blue-700  hover:bg-white"
-                  >
-                    Éditer
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    onClick={() => onDelete(todo.id)}
-                    className="text-xs text-gray-800 hover:text-red-700 bg-red-700 hover:bg-white"
-                  >
-                    Supprimer
-                  </Button>
+                <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <div className="flex justify-center space-x-2">
+                    <Button
+                      variant="default"
+                      onClick={() => onEdit(todo.id)}
+                      className="text-indigo-600 hover:text-indigo-900 border-indigo-200 hover:bg-indigo-50"
+                    >
+                      Éditer
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      onClick={() => onDelete(todo.id)}
+                      className="text-red-600 hover:text-red-900 border-red-200 hover:bg-red-50"
+                    >
+                      Supprimer
+                    </Button>
+                  </div>
                 </td>
               </tr>
             ))
