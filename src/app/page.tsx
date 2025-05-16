@@ -1,4 +1,3 @@
-
 "use client";
 import { useRouter } from 'next/navigation';
 
@@ -10,45 +9,80 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 text-white p-6 overflow-hidden relative">
-    {/* Effets de fond animés */}
-    <div className="absolute inset-0 overflow-hidden">
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-screen opacity-20 animate-float1"></div>
-      <div className="absolute top-1/3 right-1/3 w-72 h-72 bg-purple-500 rounded-full mix-blend-screen opacity-20 animate-float2"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-60 h-60 bg-indigo-500 rounded-full mix-blend-screen opacity-20 animate-float3"></div>
-    </div>
-  
-    <div className="relative z-10 text-center max-w-2xl">
-      <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 animate-text-glow">
-          Transformez Votre Productivité
-        </span>
-      </h1>
-      
-      <p className="text-xl md:text-2xl text-gray-200 mb-10 leading-relaxed">
-        Organisez vos tâches avec élégance et <span className="font-semibold text-cyan-300">efficacité</span>. 
-        Notre outil vous offre une expérience <span className="font-semibold text-purple-300">intuitive</span> et 
-        <span className="font-semibold text-blue-300"> captivante</span>.
-      </p>
-      
-      <button
-        onClick={handleClick}
-        className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold rounded-xl shadow-2xl hover:shadow-cyan-500/30 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 group"
-      >
-        <span className="relative flex items-center justify-center">
-          <span className="mr-3">Commencer l&apos;aventure</span>
-          <span className="group-hover:translate-x-1 transition-transform duration-200">
-            →
-          </span>
-        </span>
-      </button>
-      
-      <div className="mt-12 animate-bounce-slow">
-        <svg className="w-10 h-10 mx-auto text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-gray-900 p-6">
+      <div className="max-w-2xl mx-auto text-center">
+        {/* Logo minimaliste */}
+        <div className="mb-8 flex justify-center">
+          <div className="w-16 h-16 rounded-lg bg-blue-600 flex items-center justify-center shadow-md">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-8 w-8 text-white" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" 
+              />
+            </svg>
+          </div>
+        </div>
+
+        {/* Titre sobre */}
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+          Gestion de tâches <span className="text-blue-600">professionnelle</span>
+        </h1>
+        
+        {/* Description concise */}
+        <p className="text-lg text-gray-600 mb-10 leading-relaxed max-w-lg mx-auto">
+          Une solution simple et puissante pour organiser votre travail quotidien. 
+          Optimisez votre productivité avec notre outil intuitif.
+        </p>
+        
+        {/* Bouton principal sobre */}
+        <button
+          onClick={handleClick}
+          className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Accéder à l&#39;application
+        </button>
+
+        {/* Points forts sous forme de liste */}
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+            <h3 className="font-semibold text-gray-800 mb-2 flex items-center">
+              <svg className="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Simplicité
+            </h3>
+            <p className="text-sm text-gray-600">Interface épurée et intuitive</p>
+          </div>
+          
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+            <h3 className="font-semibold text-gray-800 mb-2 flex items-center">
+              <svg className="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Efficacité
+            </h3>
+            <p className="text-sm text-gray-600">Optimisez votre temps</p>
+          </div>
+          
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+            <h3 className="font-semibold text-gray-800 mb-2 flex items-center">
+              <svg className="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Sécurité
+            </h3>
+            <p className="text-sm text-gray-600">Vos données protégées</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </main>
+    </main>
   );
 }
