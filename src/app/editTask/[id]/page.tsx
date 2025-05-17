@@ -88,7 +88,8 @@ export default function EditTask() {
                     setError("");
                   }}
                   placeholder="Ex: Finaliser le rapport trimestriel"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-transparent transition-all shadow-sm"
+                  className="w-full text-black
+                   px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-transparent transition-all shadow-sm"
                   autoFocus
                 />
               </div>
