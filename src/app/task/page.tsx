@@ -46,7 +46,7 @@ export default function TaskPage() {
         </button>
 
         <div className="mt-8 bg-white rounded-lg shadow-md p-4">
-          <TasksTable todos={todos} onEdit={handleEdit} onDelete={handleDelete} className="w-full" />
+          <TasksTable todos={todos} onEdit={handleEdit} onDelete={handleDelete}  />
 
           {todos.length === 0 && (
             <div className="text-center py-10">
