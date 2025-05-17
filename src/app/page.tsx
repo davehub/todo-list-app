@@ -109,12 +109,6 @@ export default function Home() {
         {/* Call-to-action secondaire */}
         <div className="mt-16 text-center">
           <p className="text-gray-500 mb-4">Prêt à transformer votre productivité ?</p>
-          <button
-            onClick={handleClick}
-            className="px-8 py-3 border-2 border-blue-600 text-blue-600 font-medium rounded-xl hover:bg-blue-50 transition-colors"
-          >
-            Essai gratuit
-          </button>
         </div>
       </div>
     </main>
